@@ -40,10 +40,9 @@
 #module-container {
   background-color: rgba(0,0,0,0.2);
   border-radius: 10px;
-  margin-top: 70px;
+  margin-top: 100px;
   text-align: center;
-  top: 15px;
-  @include setDimensions(85vh, 90%);
+  @include setDimensions(85vh, 95%);
   @include setHorizontalPositions(0, 0);
   @include addHorizontalAutoMargins(auto, auto);
 }
@@ -115,16 +114,4 @@ strong {
     max-width: 200px;
   }
 
-}
-
-@media only screen and (max-height: 880px) {
-  #module-container {
-    margin-top: 20%;
-  }
-}
-
-@media only screen and (max-height: 785px) {
-  #module-container {
-    margin-top: 25%;
-  }
 }
