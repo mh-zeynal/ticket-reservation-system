@@ -1,0 +1,15 @@
+<div id="container">
+  <div id="result-container">
+    <input type="text" readonly  placeholder="select your {{dialogue}}" id="result-input" (click)="showList($event)" #result_input>
+  </div>
+  <div id="option-container" #option_container>
+    <div id="searchbox-container">
+      <input type="text" id="searchbox" (keyup)="searchCity()" #search_box>
+    </div>
+    <div id="scrollable-optionbox">
+      <div *ngFor="let city of results" class="cities" (click)="selectCity(city?.name, $event)">
+        {{city?.name}}
+      </div>
+    </div>
+  </div>
+</div>

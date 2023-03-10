@@ -1,0 +1,116 @@
+@import "src/assets/sassStuff/mixins";
+
+#background {
+  background: url("../../assets/1115644.jpg") center;
+  filter: blur(5px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: blurIn ease-in 1s;
+}
+
+#button-container{
+  @include setFlexDisplay(space-around);
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+#context-container {
+  position: relative;
+  height: 98vh;
+  box-sizing: border-box;
+  @include setFlexDisplay(flex-start, flex, column);
+}
+
+#title-div-container {
+  height: 100%;
+  @include setFlexDisplay(center, flex, column);
+}
+
+#title-container {
+  @include setFlexDisplay(center, flex)
+}
+
+#button-bar {
+  @include setFlexDisplay(space-around, flex);
+}
+
+.account-button {
+  background: rgba(0, 0, 0, 0);
+  border: {
+    style: solid;
+    color: #ffffff;
+    radius: 5px;
+    width: 2px;
+  };
+  padding: 10px;
+  width: 110px;
+  height: 60px;
+}
+
+.account-link {
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+
+h2 {
+  font: {
+    family: Calibri;
+    size: 80px;
+  }
+  animation: fadeUp ease-in 1s;
+  text-align: center;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes blurIn {
+  from {
+    filter: blur(0px);
+  }
+  to {
+    filter: blur(5px);
+  }
+}
+
+@media only screen and (max-width: 1455px) {
+  h2 {
+    font-size: 5vw;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  h2 {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  h2 {
+    font-size: 10vw;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .account-button {
+    width: 85px;
+    height: 47px;
+  }
+  .account-link {
+    font-size: 20px;
+  }
+}
+

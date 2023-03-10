@@ -1,0 +1,19 @@
+<div id="form-container">
+  <form [formGroup]="ticketGroup" (submit)="onSubmit()">
+    <div id="control-container">
+      <div id="place-container">
+        <app-custom-search-box-input [dialogue]="'source'" formControlName="origin"></app-custom-search-box-input>
+        <app-custom-search-box-input [dialogue]="'destination'" formControlName="destination"></app-custom-search-box-input>
+      </div>
+      <div id="date-container">
+        <app-custom-date-input formControlName="flightDate"></app-custom-date-input>
+      </div>
+    </div>
+    <div *ngIf="!ticketGroup.valid && submitted" class="error-log">
+      please fill all filters
+    </div>
+    <div id="search-button-container">
+      <button mat-stroked-button color="warn" type="submit">search</button>
+    </div>
+  </form>
+</div>

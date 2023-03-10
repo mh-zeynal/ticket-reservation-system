@@ -1,0 +1,140 @@
+:host{
+  font-family: "JetBrains Mono Medium";
+  color: black;
+}
+
+#data-container {
+  background-color: white;
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#header-container {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  border-bottom: 2px solid #727279;
+  justify-content: left;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+#profile-photo {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
+
+#profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#body-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#body-container div:not(:last-child){
+  margin-bottom: 2%;
+}
+
+.data {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+#visibility {
+  width: 20px;
+  height: 20px;
+}
+
+#toggle-button {
+  height: 32px;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  outline: 2px solid #555560;
+  border-radius: 10px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bullet-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(117%);
+}
+
+strong {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 200px;
+  font-size: 2vw;
+  text-overflow: ellipsis;
+  text-align: left;
+  height: 30px;
+  vertical-align: middle;
+}
+
+em {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 200px;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+@media only screen and (max-width: 1200px) {
+  strong {
+    font-size: 2.5vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  strong {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  strong {
+    font-size: 5vw;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  strong {
+    font-size: 6vw;
+  }
+
+  em {
+    font-size: 20px;
+    max-width: 50px;
+  }
+}
+
+
+
+
+

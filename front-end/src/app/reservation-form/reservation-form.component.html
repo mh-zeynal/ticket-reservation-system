@@ -1,0 +1,44 @@
+<div id="container">
+  <div id="flight-details">
+    <div id="terminal-details">
+      <div>
+        <strong class="strongs">{{origin}}</strong>
+        <strong class="strongs">{{formatDate(flight.departureDate)}}</strong>
+      </div>
+      <img src="./assets/icons/arrow.png" alt="arrow" id="arrow">
+      <div>
+        <strong class="strongs">{{destination}}</strong>
+        <strong class="strongs">{{formatDate(flight.arrivalDate)}}</strong>
+      </div>
+    </div>
+    <div id="timing-details">
+      <div id="plane_type">
+        {{flight.type}}
+      </div>
+      <img src="./assets/icons/plane.png" alt="plane" id="plane">
+    </div>
+  </div>
+  <div id="form-container">
+    <form [formGroup]="finalDataGroup" (submit)="onSubmit()">
+      <div id="name-stuff">
+        <mat-form-field>
+          <mat-label>firstname</mat-label>
+          <input matInput type="text" formControlName="firstname" required placeholder="firstname">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>lastname</mat-label>
+          <input matInput type="text" formControlName="lastname" required placeholder="lastname">
+        </mat-form-field>
+      </div>
+      <div id="seat-presenter">
+        <app-custom-seat-control [seats]="flight.seats" formControlName="seat"></app-custom-seat-control>
+      </div>
+      <div *ngIf="finalDataGroup.controls.seat.errors?.required && submitted" class="error-log">
+        please choose a seat
+      </div>
+      <div id="button-container">
+        <button mat-stroked-button color="primary">reserve</button>
+      </div>
+    </form>
+  </div>
+</div>

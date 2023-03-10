@@ -1,0 +1,31 @@
+<div class="account-form-container" class="account-form">
+  <form [formGroup]="signupGroup" (submit)="onSignup()" class="account-form">
+    <div id="signup-container" class="form-cont">
+      <div class="input-container">
+        <mat-form-field class="input">
+          <input matInput type="text" formControlName="name" required placeholder="name">
+          <mat-hint>enter your full name</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="input-container">
+        <mat-form-field class="input">
+          <input matInput type="text" formControlName="username" required placeholder="username">
+          <mat-hint>enter your intended username</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="input-container">
+        <mat-form-field class="input">
+          <input matInput type="password" formControlName="password" required placeholder="password">
+          <mat-hint>enter your password</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="input-container">
+        <mat-form-field class="input">
+          <input matInput type="email" formControlName="email" required placeholder="email">
+          <mat-hint>enter your available email</mat-hint>
+        </mat-form-field>
+      </div>
+      <button type="submit" id="submit-button" color="primary" mat-raised-button>signup</button>
+    </div>
+  </form>
+</div>

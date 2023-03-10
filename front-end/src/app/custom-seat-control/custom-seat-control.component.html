@@ -1,0 +1,5 @@
+<div id="seat-container">
+  <ng-container *ngFor="let seat of seats">
+    <app-seat-presenter [seat]="seat" (choose)="setState($event)"></app-seat-presenter>
+  </ng-container>
+</div>

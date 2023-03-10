@@ -1,0 +1,130 @@
+@import "src/assets/sassStuff/mixins";
+
+@mixin addHorizontalAutoMargins($left, $right){
+  margin: {
+    left: $left;
+    right: $right;
+  };
+}
+
+@mixin setHorizontalPositions($left, $right){
+  left:$left;
+  right:$right;
+}
+
+@mixin setDimensions($height: auto, $width: auto){
+  width: $width;
+  height: $height;
+}
+
+#page-container {
+  @include setDimensions(98vh);
+  @include setFlexDisplay(center, flex, column);
+}
+
+#button-bar {
+  position: absolute;
+  top: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 95%;
+  box-sizing: border-box;
+  transition: height 0.5s;
+  vertical-align: middle;
+  display:table-cell;
+  background-image: linear-gradient(-45deg, #13a3cf, #07267c);
+  @include setHorizontalPositions(0, 0);
+  @include addHorizontalAutoMargins(auto, auto);
+}
+
+#module-container {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 10px;
+  margin-top: 70px;
+  text-align: center;
+  top: 15px;
+  @include setDimensions(85vh, 90%);
+  @include setHorizontalPositions(0, 0);
+  @include addHorizontalAutoMargins(auto, auto);
+}
+
+img {
+  filter: invert(100%);
+  display: inline;
+  @include setDimensions(40px, 40px);
+}
+
+strong {
+  font-family: "JetBrains Mono";
+  padding: 5px;
+}
+
+.button {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  overflow:hidden;
+  max-width: 40px;
+  transition: max-width 0.5s;
+  @include setDimensions(40px);
+}
+
+.permissions:hover{
+  max-width: 200px;
+}
+
+.text {
+  color: white;
+  white-space: nowrap;
+}
+
+#logout {
+  background-color: #743ad5;
+  padding: 5px;
+  $map: (width: 2px, style: solid, color: #5a5a6d, radius: 10px);
+  @include setBorderProperties($map);
+}
+
+#more {
+  display: none;
+}
+
+#button-bar a:not(:last-child) {
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  #more{
+    display: inline-flex;
+  }
+  #button-bar a:not(:first-child) {
+    display: none;
+  }
+
+  #button-bar {
+    z-index: 3;
+    width: 90%;
+    @include setFlexDisplay(space-between, flex, column);
+  }
+
+  #module-container {
+    width: 85%;
+  }
+
+  .permissions {
+    max-width: 200px;
+  }
+
+}
+
+@media only screen and (max-height: 880px) {
+  #module-container {
+    margin-top: 20%;
+  }
+}
+
+@media only screen and (max-height: 785px) {
+  #module-container {
+    margin-top: 25%;
+  }
+}

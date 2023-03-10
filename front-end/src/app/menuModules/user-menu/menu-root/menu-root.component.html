@@ -1,0 +1,20 @@
+<div id="page-container">
+  <div id="button-bar" [@showHide]="!barFlag ? 'show' : 'hide'">
+    <a class="button" id="more" (click)="toggle()">
+      <img src="../../../../assets/icons/more.png" alt="more" class="icon">
+    </a>
+    <a class="button permissions" id="logout" href="/userMenu/logout" [@opacityChange]="!buttonFlag ? 'increaseOpacity' : 'decreaseOpacity'" [@displayChange]="!buttonFlag ? 'showDisplay' : 'hideDisplay'">
+      <img src="../../../../assets/icons/logout.png" alt="logout" class="icon">
+      <strong class="text">logout</strong>
+    </a>
+    <ng-container *ngFor="let perm of permissions">
+      <a class="button permissions" href="/userMenu/{{formatLink(perm.option.title)}}" [@opacityChange]="!buttonFlag ? 'increaseOpacity' : 'decreaseOpacity'" [@displayChange]="!buttonFlag ? 'showDisplay' : 'hideDisplay'">
+        <img src="../../assets/icons/{{perm.option.title}}.png" alt="{{perm.option.title}}" class="icon">
+        <strong class="text">{{perm.option.title}}</strong>
+      </a>
+    </ng-container>
+  </div>
+  <div id="module-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

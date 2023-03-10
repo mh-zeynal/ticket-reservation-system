@@ -1,0 +1,105 @@
+#vertical-position-setter {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ecffc1;
+  background: -webkit-linear-gradient(0deg, #ecffc1 0%, #ffe6cc 50%, #dfbaf7 100%);
+  background: linear-gradient(0deg, #ecffc1 0%, #ffe6cc 50%, #dfbaf7 100%);
+  * {
+    font-size: 20px;
+    font-family: "JetBrains Mono";
+  }
+}
+
+#horizontal-position-setter {
+  display: flex;
+  justify-content: center;
+}
+
+#ticket {
+  background-color: white;
+  background-size: 20px 20px;
+  background-position: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 600px;
+  outline: 2px solid #bcbcbc;
+}
+
+#counter-button {
+  background-color: #085f08;
+  color: white;
+  text-align: center;
+  height: 55px;
+  border: none;
+  box-shadow: 1px 10px 15px #323232 inset;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#data-container {
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#name-box {
+ strong {
+   font-size: 40px;
+   color: black;
+ }
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #d7d7d7;
+    color: black;
+  }
+}
+
+#price-box {
+  &, *{
+    color: #1da0ff;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  #ticket {
+    width: 300px;
+    height: 400px;
+    * {
+      font-size: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  #ticket {
+    width: 200px;
+    height: 400px;
+    * {
+      font-size: 10px;
+    }
+  }
+  .box {
+    padding: 3px 4px;
+  }
+}
+
+@media only screen and (max-height: 770px) {
+  #ticket {
+    height: 370px;
+  }
+}
+

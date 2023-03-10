@@ -1,0 +1,17 @@
+@mixin setBorderProperties($borderMap){
+  @each $key, $val in $borderMap {
+    border-#{$key}: $val;
+  }
+}
+
+@mixin setOutlineProperties($outlineMap){
+  @each $key, $val in $outlineMap {
+    outline-#{$key}: $val;
+  }
+}
+
+@mixin setFlexDisplay($justify, $display: flex, $direction: row){
+  display: $display;
+  justify-content: $justify;
+  flex-direction: $direction;
+}

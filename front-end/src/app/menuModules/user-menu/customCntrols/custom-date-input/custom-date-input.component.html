@@ -1,0 +1,29 @@
+<div id="container">
+  <div id="input-container">
+    <button (click)="toggle()" type="button">
+      <img src="../../../../../assets/icons/calendar.png" alt="calendar">
+    </button>
+    <input type="text" placeholder="choose flight date" readonly #date_presenter>
+  </div>
+  <div id="date-box" *ngIf="isAppeared" #date_box tabindex="0">
+    <div id="month-box">
+      <button [disabled]="!leftFlag" (click)="setMonthDays(0)" type="button">
+        <img src="../../../../../assets/icons/left-arrow.png" alt="left">
+      </button>
+      {{selectedMonth}}
+      <button [disabled]="!rightFlag" (click)="setMonthDays(1)" type="button">
+        <img src="../../../../../assets/icons/right-arrow.png" alt="right">
+      </button>
+    </div>
+    <div id="day-box">
+      <ng-container *ngFor="let num of monthDays; let i = index">
+        <div class="valid-days days" (click)="selectDate(i + 1)" *ngIf="(i+1 >= currentDay && !leftFlag) || !rightFlag">
+          {{i + 1}}
+        </div>
+        <div class="invalid-days days" *ngIf="i+1 < currentDay && rightFlag">
+          {{i + 1}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

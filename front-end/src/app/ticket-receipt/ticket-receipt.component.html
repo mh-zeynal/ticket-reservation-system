@@ -1,0 +1,26 @@
+<div id="vertical-position-setter">
+  <button id="counter-button" (click)="redirectToMenu()">
+    {{dialogue}}
+  </button>
+  <div id="horizontal-position-setter">
+    <div id="ticket" #ticketDiv>
+      <div id="data-container">
+        <div id="name-box">
+          <strong>{{ticket?.firstname + " " + ticket?.lastname}}</strong>
+        </div>
+        <div class="box">
+          <strong>departure date</strong> {{ticket?.departureDate}}
+        </div>
+        <div class="box">
+          <strong>arrival date</strong> {{ticket?.arrivalDate}}
+        </div>
+        <div class="box">
+          <strong>seat number</strong> {{ticket?.seat?.seatNumber}}
+        </div>
+        <div class="box" id="price-box">
+          <strong>paid price</strong> {{ticket?.seat?.price}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

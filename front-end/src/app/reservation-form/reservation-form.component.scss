@@ -1,0 +1,120 @@
+@import "src/assets/sassStuff/mixins";
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  box-sizing: border-box;
+  * {
+    font-family: "JetBrains Mono";
+  }
+}
+
+#terminal-details {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 5px;
+}
+
+#flight-details {
+  height: fit-content;
+  padding: 15px;
+  @include setBorderProperties((style: solid, width: 3px, color: #949191, radius: 10px));
+  margin-bottom: 10px;
+  * {
+    color: black;
+  }
+}
+
+#arrow {
+  width: 40px;
+  margin: 0px 10px;
+}
+
+#plane {
+  width: 40px;
+  margin-left: 5px;
+}
+
+.strongs {
+  display: block;
+  height: 20px;
+  width: fit-content;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+#form-container {
+  height: 100%;
+  @include setBorderProperties((style: solid, width: 3px, color: #949191, radius: 10px));
+}
+
+#timing-details {
+  display: flex;
+  justify-content: right;
+}
+#plane_type {
+  background-color: #d6d6d6;
+  padding: 5px;
+  box-sizing: border-box;
+  width: fit-content;
+  @include setBorderProperties((radius: 10px));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+}
+
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0px;
+  box-sizing: border-box;
+}
+
+input {
+  color: black;
+}
+
+#name-stuff {
+  display: flex;
+  justify-content: space-around;
+}
+
+#seat-presenter {
+  display: flex;
+  justify-content: center;
+}
+
+.seats {
+  width: 10px;
+  height: 10px;
+  background-color: #2b2f77;
+  @include setBorderProperties((style: solid, radius: 15px, color: #1d1f4f, width: 2px))
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.error-log {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 460px) {
+  #name-stuff {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 20px;
+  }
+}

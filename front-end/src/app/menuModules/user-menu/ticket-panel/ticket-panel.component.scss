@@ -1,0 +1,107 @@
+#form-container {
+  height: 100%;
+  background-color: white;
+}
+
+#control-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  vertical-align: center;
+}
+
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#place-container {
+  display: flex;
+  justify-content: space-around;
+  app-custom-search-box-input {
+
+  }
+}
+
+#image-container {
+  width: 35px;
+  height: 35px;
+  padding: 8px;
+  border-radius: 50%;
+  outline: 3px solid #6b6969;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: {
+    left: 10px;
+    right: 10px;
+  };
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+#search-button-container {
+  padding: 20px;
+  box-sizing: border-box;
+  button {
+    width: 140px;
+    height: 50px;
+    z-index: 0;
+  }
+}
+
+#date-container {
+  display: flex;
+  justify-content: center;
+}
+
+.error-log {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-size: 20px;
+}
+
+app-custom-date-input {
+  width: 50%;
+}
+
+app-custom-search-box-input {
+  width: 30%;
+}
+
+@media only screen and (max-width: 512px) {
+  app-custom-date-input {
+    width: 70%;
+  }
+
+  app-custom-search-box-input {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #place-container {
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
+  }
+
+  #date-container {
+    height: 40%;
+  }
+
+  app-custom-date-input {
+    width: 70%;
+  }
+
+  app-custom-search-box-input {
+    width: 70%;
+  }
+}
+

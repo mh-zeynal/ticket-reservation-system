@@ -1,0 +1,48 @@
+@import "src/assets/sassStuff/mixins";
+
+.account-form{
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#signup-container {
+  $borderMap: (width: 1px, color: #2b2929, style: solid);
+  @include setBorderProperties($borderMap);
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 350px;
+}
+
+#pass-container {
+  display: inline;
+}
+
+#password-stat {
+  height: 12px;
+  width: 12px;
+}
+
+:host {
+  display: block;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input{
+  width: 100%;
+  mat-hint {
+    color: #bababa;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .account-form {
+    width: 85vw;
+  }
+}
+

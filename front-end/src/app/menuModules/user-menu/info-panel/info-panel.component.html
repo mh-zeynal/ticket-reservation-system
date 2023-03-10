@@ -1,0 +1,40 @@
+<div id="data-container">
+  <div id="header-container">
+    <div id="profile-container">
+      <img src="./assets/icons/profile.png" alt="profile photo" id="profile-photo">
+    </div>
+    <div id="user-container">
+      <strong>{{data?.username}}</strong>
+    </div>
+  </div>
+  <div id="body-container">
+    <div class="data">
+      <img src="./assets/icons/name.png" alt="name" class="bullet-image">
+      <div class="text-container">
+        <em>{{data?.name}}</em>
+      </div>
+    </div>
+    <div class="data">
+      <img src="./assets/icons/email.png" alt="email" class="bullet-image">
+      <div class="text-container">
+        <em>{{data?.email}}</em>
+      </div>
+    </div>
+    <div class="data">
+      <img src="./assets/icons/role.png" alt="role" class="bullet-image">
+      <div class="text-container">
+        <em>{{data?.role}}</em>
+      </div>
+    </div>
+    <div class="data">
+      <img src="./assets/icons/password.png" alt="password" class="bullet-image">
+      <div class="text-container">
+        <em>{{passwordDisplay}}</em>
+      </div>
+      <button id="toggle-button" (click)="toggleDisplay()">
+        <img src="./assets/icons/visibility.png" alt="toggle visible" id="visibility">
+      </button>
+    </div>
+
+  </div>
+</div>

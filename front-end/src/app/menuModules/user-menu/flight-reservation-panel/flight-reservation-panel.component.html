@@ -1,0 +1,5 @@
+<div id="container">
+  <ng-container *ngFor="let flight of flightDetails?.flightsList">
+    <app-search-result [flight]="flight" [origin]="flightDetails.origin" [destination]="flightDetails.destination" (select)="reserveTicket($event)"></app-search-result>
+  </ng-container>
+</div>

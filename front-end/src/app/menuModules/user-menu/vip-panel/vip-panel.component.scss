@@ -1,0 +1,40 @@
+@import "src/assets/sassStuff/mixins.scss";
+
+#module-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.button {
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 100px;
+  @include setBorderProperties((radius: 10px));
+}
+
+#message-container {
+  margin-bottom: 25px;
+}
+
+#button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+strong {
+  color: black;
+  font-family: "JetBrains Mono";
+  font-size: 30px;
+}
+
+

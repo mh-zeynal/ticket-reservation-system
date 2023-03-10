@@ -1,0 +1,23 @@
+<div class="flights" (click)="sendTicketToParent()">
+  <div class="image-container">
+    <img src="./assets/icons/plane.png" alt="plane">
+  </div>
+  <div class="flight-detail-container">
+    <div class="date-container">
+      <div id="airplane-type">
+        {{flight?.type}}
+      </div>
+      <div>
+        departure: {{formatDate(flight?.departureDate)}}
+      </div>
+    </div>
+    <div class="airplane-data-container">
+      <div [ngStyle]="{'color': (flight.seats.length <= 10) ? 'red' : 'black'}">
+        {{dialogue}}
+      </div>
+      <div>
+        arrival: {{formatDate(flight?.arrivalDate)}}
+      </div>
+    </div>
+  </div>
+</div>
