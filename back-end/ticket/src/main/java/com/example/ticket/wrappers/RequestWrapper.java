@@ -1,6 +1,6 @@
 package com.example.ticket.wrappers;
 
-import jakarta.servlet.ReadListener;
+//import jakarta.servlet.ReadListener;
 
 import java.io.*;
 import javax.servlet.*;
@@ -46,6 +46,15 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     public ServletInputStream getInputStream() throws IOException {
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body.getBytes());
         ServletInputStream servletInputStream = new ServletInputStream() {
+
+            @Override
+            public boolean isFinished() {return false;}
+
+            @Override
+            public boolean isReady() {return false;}
+
+            @Override
+            public void setReadListener(ReadListener readListener) {}
 
             public int read() throws IOException {
                 return byteArrayInputStream.read();
