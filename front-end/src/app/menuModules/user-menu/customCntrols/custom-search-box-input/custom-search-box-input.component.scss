@@ -43,15 +43,11 @@ input {
 }
 
 #option-container {
-  display: none;
+  display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
   width: 220px;
   box-sizing: border-box;
   height: 150px;
-  position: absolute;
-  margin-top: 55px;
   padding: 5px;
   background-color: #d9d7d7;
   border-radius: 5px;

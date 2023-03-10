@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {City} from "../../../../interfaces/city";
+import {ConnectionPositionPair} from "@angular/cdk/overlay";
 
 @Component({
   selector: 'app-custom-search-box-input',
@@ -18,13 +19,25 @@ export class CustomSearchBoxInputComponent implements OnInit, ControlValueAccess
 
   public results !: City[];
 
-  @ViewChild("option_container") container!: ElementRef;
+  isUserDropdownOpen = false;
+
 
   @ViewChild('search_box') box!: ElementRef;
 
-  @ViewChild('result_input') input !: ElementRef;
+  @ViewChild('trigger') input !: ElementRef;
 
   @Input() dialogue !: string;
+
+  overlayPositionPairs: ConnectionPositionPair[] = [
+    {
+      offsetX: 0,
+      offsetY: 155,
+      originX: 'center',
+      originY: 'bottom',
+      overlayX: 'center',
+      overlayY: 'bottom',
+    },
+  ];
 
   constructor() { }
 
@@ -116,14 +129,11 @@ export class CustomSearchBoxInputComponent implements OnInit, ControlValueAccess
 
   showList(event: MouseEvent){
     this.results = this.cities;
-    if(!!this.container)
-      (this.container.nativeElement as HTMLDivElement).style.display = 'flex';
-    event.stopPropagation();
+    this.isUserDropdownOpen = true;
   }
 
   hideList(){
-    if(!!this.container)
-      (this.container.nativeElement as HTMLDivElement).style.display = 'none';
+    this.isUserDropdownOpen = false;
   }
 
   selectCity(val: any, event: MouseEvent){

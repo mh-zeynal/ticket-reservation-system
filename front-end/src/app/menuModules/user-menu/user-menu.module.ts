@@ -12,6 +12,8 @@ import {CustomSearchBoxInputComponent} from "./customCntrols/custom-search-box-i
 import { LogoutPanelComponent } from './logout-panel/logout-panel.component';
 import { FlightReservationPanelComponent } from './flight-reservation-panel/flight-reservation-panel.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import {OverlayModule} from "@angular/cdk/overlay";
+import {A11yModule} from "@angular/cdk/a11y";
 
 
 
@@ -32,7 +34,9 @@ import { SearchResultComponent } from './search-result/search-result.component';
     UserMenuRoutingModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    OverlayModule,
+    A11yModule
   ],
   exports: []
 })

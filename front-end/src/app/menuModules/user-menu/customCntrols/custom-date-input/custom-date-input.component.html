@@ -1,11 +1,22 @@
 <div id="container">
   <div id="input-container">
-    <button (click)="toggle()" type="button">
+    <button (click)="toggle()"
+            type="button" cdkOverlayOrigin
+            #trigger="cdkOverlayOrigin">
       <img src="../../../../../assets/icons/calendar.png" alt="calendar">
     </button>
     <input type="text" placeholder="choose flight date" readonly #date_presenter>
   </div>
-  <div id="date-box" *ngIf="isAppeared" #date_box tabindex="0">
+</div>
+<ng-template cdkConnectedOverlay
+             [cdkConnectedOverlayHasBackdrop]="true"
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="isUserDropdownOpen"
+             (detach)="isUserDropdownOpen = false"
+             (backdropClick)="isUserDropdownOpen = false"
+             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+             [cdkConnectedOverlayPositions]="overlayPositionPairs">
+  <div id="date-box" #date_box tabindex="0">
     <div id="month-box">
       <button [disabled]="!leftFlag" (click)="setMonthDays(0)" type="button">
         <img src="../../../../../assets/icons/left-arrow.png" alt="left">
@@ -26,4 +37,4 @@
       </ng-container>
     </div>
   </div>
-</div>
+</ng-template>

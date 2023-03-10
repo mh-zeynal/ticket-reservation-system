@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ConnectionPositionPair} from "@angular/cdk/overlay";
 
 @Component({
   selector: 'app-custom-date-input',
@@ -17,8 +18,6 @@ export class CustomDateInputComponent implements OnInit, ControlValueAccessor {
 
   public selectedMonth !: string;
 
-  public isAppeared = false;
-
   public leftFlag = true;
 
   public rightFlag = false;
@@ -32,6 +31,19 @@ export class CustomDateInputComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('date_presenter') input !: ElementRef;
 
+  isUserDropdownOpen = false;
+
+  overlayPositionPairs: ConnectionPositionPair[] = [
+    {
+      offsetX: 0,
+      offsetY: -20,
+      originX: 'center',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+    },
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -41,7 +53,7 @@ export class CustomDateInputComponent implements OnInit, ControlValueAccessor {
   }
 
   toggle(){
-    this.isAppeared = !this.isAppeared;
+    this.isUserDropdownOpen = !this.isUserDropdownOpen;
   }
 
   setMonthDays(index: number){

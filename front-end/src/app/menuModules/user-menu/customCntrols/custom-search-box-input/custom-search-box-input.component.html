@@ -1,8 +1,20 @@
 <div id="container">
   <div id="result-container">
-    <input type="text" readonly  placeholder="select your {{dialogue}}" id="result-input" (click)="showList($event)" #result_input>
+    <input type="text" readonly
+           placeholder="select your {{dialogue}}" id="result-input"
+           (click)="showList($event)" cdkOverlayOrigin
+           #trigger="cdkOverlayOrigin">
   </div>
-  <div id="option-container" #option_container>
+</div>
+<ng-template cdkConnectedOverlay
+             [cdkConnectedOverlayHasBackdrop]="true"
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="isUserDropdownOpen"
+             (detach)="isUserDropdownOpen = false"
+             (backdropClick)="isUserDropdownOpen = false"
+             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+             [cdkConnectedOverlayPositions]="overlayPositionPairs">
+  <div id="option-container" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
     <div id="searchbox-container">
       <input type="text" id="searchbox" (keyup)="searchCity()" #search_box>
     </div>
@@ -12,4 +24,4 @@
       </div>
     </div>
   </div>
-</div>
+</ng-template>
