@@ -1,19 +1,23 @@
-<div class="account-form-container" class="account-form">
-  <form [formGroup]="loginGroup" (submit)="onLogin()">
-    <div id="login-container" class="form-cont">
-      <div class="input-container">
-        <mat-form-field class="input">
-          <input matInput type="text" formControlName="username" required placeholder="username">
-          <mat-hint>enter your account's username</mat-hint>
-        </mat-form-field>
-      </div>
-      <div class="input-container">
-        <mat-form-field class="input">
-          <input matInput type="password" formControlName="password" required placeholder="password">
-          <mat-hint>enter your account's password</mat-hint>
-        </mat-form-field>
-      </div>
-      <button type="submit" id="submit-button" color="accent" mat-stroked-button>login</button>
+<form [formGroup]="form" (submit)="onSubmit()" class="glass-box" id="form-container">
+  <div id="login-container">
+    <div class="input-container">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>username</mat-label>
+        <input matInput type="text" formControlName="username" required>
+<!--        <mat-hint>enter your account's username</mat-hint>-->
+      </mat-form-field>
     </div>
-  </form>
-</div>
+    <div class="input-container">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>password</mat-label>
+        <input matInput type="password" formControlName="password" required >
+<!--        <mat-hint>enter your account's password</mat-hint>-->
+      </mat-form-field>
+    </div>
+    <button type="submit" id="submit-button" color="primary" mat-raised-button>login</button>
+    <button type="button" color="warn" mat-button
+            (click)="formType.emit('signup')">
+      don't have an account?
+    </button>
+  </div>
+</form>

@@ -1,32 +1,27 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {HttpService} from "../services/http.service";
-import {ResponseMessage} from "../interfaces/response-message";
-import {AccountResponseService} from "../services/account-response.service";
-import {Router} from "@angular/router";
-import {FormData} from "../interfaces/formData";
+import {AbstractForm} from "../classes/abstract-form";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends AbstractForm implements OnInit {
 
-  @Output() submitLogin = new EventEmitter<FormData>();
-
-  public loginGroup = new FormGroup({
-    username : new FormControl(''),
-    password : new FormControl(''),
-  })
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    super();
   }
 
-  onLogin(){
-    this.submitLogin.emit({formGroup: this.loginGroup, uri: '/api/account/login'} as FormData)
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      username : new FormControl(''),
+      password : new FormControl(''),
+    })
+  }
+
+  onSubmit(){
+    this.submitForm.emit(this.form)
   }
 
 }

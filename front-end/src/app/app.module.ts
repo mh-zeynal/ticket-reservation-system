@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignupComponent } from './signup/signup.component';
-import { AccountComponent } from './account/account.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {UserMenuModule} from "./menuModules/user-menu/user-menu.module";
@@ -22,7 +21,6 @@ import { CustomSeatControlComponent } from './custom-seat-control/custom-seat-co
     AppComponent,
     SignupComponent,
     LoginComponent,
-    AccountComponent,
     MenuComponent,
     TicketReceiptComponent,
     ReservationFormComponent,

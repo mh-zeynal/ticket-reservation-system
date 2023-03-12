@@ -1,48 +1,22 @@
-@import "src/assets/sassStuff/mixins";
+@import "src/styles";
 
-.account-form{
-  border-radius: 10px;
-  box-sizing: border-box;
+#form-container {
+  width: 360px;
+  display: flex;
 }
 
 #signup-container {
-  $borderMap: (width: 1px, color: #2b2929, style: solid);
-  @include setBorderProperties($borderMap);
-  padding: 25px;
-  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  height: 350px;
-}
-
-#pass-container {
-  display: inline;
-}
-
-#password-stat {
-  height: 12px;
-  width: 12px;
-}
-
-:host {
-  display: block;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  //background-color: rgba(85, 83, 83, 0.45) !important;
+  background-color: #74747470;
 }
 
 .input-container {
-  position: relative;
-}
-
-.input{
   width: 100%;
-  mat-hint {
-    color: #bababa;
-  }
 }
-
-@media only screen and (max-width: 460px) {
-  .account-form {
-    width: 85vw;
-  }
-}
-

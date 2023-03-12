@@ -1,13 +1,21 @@
-<div id="background">
-</div>
-<div id="context-container">
-  <div id="button-container">
-    <button class="account-button"><a routerLink="/account" [queryParams]="{ f: 'true'}" class="account-link">login</a></button>
-    <button class="account-button"><a routerLink="/account" [queryParams]="{ f: 'false'}" class="account-link">signup</a></button>
-  </div>
-  <div id="title-div-container">
-    <div id="title-container">
-      <h2>welcome to our ticket-reservation system :)</h2>
+<div id="container">
+  <div id="context">
+    <div id="account">
+      <div id="form-container">
+        <app-signup *ngIf="accountFormType == 'signup'"
+                    (formType)="accountFormType = $event"
+                    (submitForm)="onFormSubmit('/api/account/signup', $event)">
+        </app-signup>
+        <app-login *ngIf="accountFormType == 'login'"
+                   (formType)="accountFormType = $event"
+                   (submitForm)="onFormSubmit('/api/account/login', $event)">
+        </app-login>
+      </div>
+    </div>
+    <div id="welcome-text">
+      <span>
+        welcome to the<br>ticket reservation system
+      </span>
     </div>
   </div>
 </div>
