@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Permission} from "../../../interfaces/permission";
 import {HttpService} from "../../../services/http.service";
 import {menuBarAnimations} from "../../../animations/menuBar";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-menu-root',
@@ -13,9 +14,9 @@ export class MenuRootComponent implements OnInit {
 
   permissions!: Permission[];
   barFlag = true;
-  buttonFlag = true;
+  isUserOnPhone = true;
 
-  constructor(private httpServ: HttpService) {
+  constructor(private httpServ: HttpService, private platform: Platform) {
   }
 
   ngOnInit(): void {
@@ -25,18 +26,16 @@ export class MenuRootComponent implements OnInit {
     this.resizeWindow();
   }
 
-  @HostListener('window:resize', ['$event'])
   resizeWindow() {
-    if (window.innerWidth >= 600) {
-      this.buttonFlag = false;
-    }
+    if (!this.platform.ANDROID && !this.platform.IOS)
+      this.isUserOnPhone = false;
     else
-      this.buttonFlag = true;
+      this.isUserOnPhone = true;
   }
 
   toggle(){
     this.barFlag = !this.barFlag;
-    this.buttonFlag = !this.buttonFlag;
+    this.isUserOnPhone = !this.isUserOnPhone;
   }
 
   formatLink(permissionName: string){

@@ -1,20 +1,65 @@
-<div id="page-container">
-  <div id="button-bar" [@showHide]="!barFlag ? 'show' : 'hide'">
-    <a class="button" id="more" (click)="toggle()">
-      <img src="../../../../assets/icons/more.png" alt="more" class="icon">
-    </a>
-    <a class="button permissions" id="logout" href="/userMenu/logout" [@opacityChange]="!buttonFlag ? 'increaseOpacity' : 'decreaseOpacity'" [@displayChange]="!buttonFlag ? 'showDisplay' : 'hideDisplay'">
-      <img src="../../../../assets/icons/logout.png" alt="logout" class="icon">
-      <strong class="text">logout</strong>
-    </a>
+<!--<div id="page-container">-->
+<!--  <div id="button-bar" [@showHide]="!barFlag ? 'show' : 'hide'">-->
+<!--    <div id="more-container">-->
+<!--      <a class="button" id="more" (click)="toggle()">-->
+<!--        <img src="../../../../assets/icons/more.png" alt="more" class="icon">-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    <div id="permission-container">-->
+<!--      <a class="button permissions" id="logout" href="/userMenu/logout">-->
+<!--        <img src="../../../../assets/icons/logout.png" alt="logout" class="icon">-->
+<!--        <strong class="text">logout</strong>-->
+<!--      </a>-->
+<!--      <ng-container *ngFor="let perm of permissions">-->
+<!--        <a class="button permissions" href="/userMenu/{{formatLink(perm.option.title)}}">-->
+<!--          <img src="../../assets/icons/{{perm.option.title}}.png" alt="{{perm.option.title}}" class="icon">-->
+<!--          <strong class="text">{{perm.option.title}}</strong>-->
+<!--        </a>-->
+<!--      </ng-container>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--  <div id="module-container">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
+<!--</div>-->
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'">
+    <ng-container *ngTemplateOutlet="appMenuBar"></ng-container>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div id="page-container">
+      <ng-container [ngSwitch]="!isUserOnPhone ? 'desktop' : 'phone'">
+        <ng-container *ngSwitchCase="'desktop'">
+          <ng-container *ngTemplateOutlet="appMenuBar"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'phone'">
+          <button mat-button id="menu-button" (click)="drawer.toggle()">
+            <img src="./assets/icons/menu.png" alt="menu">
+          </button>
+        </ng-container>
+      </ng-container>
+      <div id="module-container" class="box">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+<ng-template #appMenuBar>
+  <div id="button-bar" class="box">
+    <div class="button-wrapper">
+      <button id="logout" class="button" routerLink="/userMenu/logout">
+        <img src="./assets/icons/logout.png" alt="logout">
+        <strong>logout</strong>
+      </button>
+    </div>
     <ng-container *ngFor="let perm of permissions">
-      <a class="button permissions" href="/userMenu/{{formatLink(perm.option.title)}}" [@opacityChange]="!buttonFlag ? 'increaseOpacity' : 'decreaseOpacity'" [@displayChange]="!buttonFlag ? 'showDisplay' : 'hideDisplay'">
-        <img src="../../assets/icons/{{perm.option.title}}.png" alt="{{perm.option.title}}" class="icon">
-        <strong class="text">{{perm.option.title}}</strong>
-      </a>
+      <div class="button-wrapper">
+        <button class="button permissions" routerLinkActive="active"
+                routerLink="/userMenu/{{formatLink(perm.option.title)}}">
+          <img src="../../assets/icons/{{perm.option.title}}.png" alt="{{perm.option.title}}" class="icon">
+          <strong class="text">{{perm.option.title}}</strong>
+        </button>
+      </div>
     </ng-container>
   </div>
-  <div id="module-container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+</ng-template>

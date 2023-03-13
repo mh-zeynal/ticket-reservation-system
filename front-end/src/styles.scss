@@ -73,7 +73,7 @@ $mat-dark-theme-foreground: (
   disabled:          $light-disabled-text,
   disabled-button:   rgba($light-text, 0.3),
   disabled-text:     $light-disabled-text,
-  elevation:         black,
+  elevation: #000000,
   hint-text:         $light-disabled-text,
   secondary-text:    $light-accent-text,
   accent-text:       $light-accent-text,
@@ -116,7 +116,7 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #0f1926;
+$dark-background: #0f1926;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);

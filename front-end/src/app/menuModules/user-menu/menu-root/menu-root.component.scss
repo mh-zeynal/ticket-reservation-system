@@ -1,4 +1,5 @@
 @import "src/assets/sassStuff/mixins";
+@import "src/styles";
 
 @mixin addHorizontalAutoMargins($left, $right){
   margin: {
@@ -17,34 +18,49 @@
   height: $height;
 }
 
+.mat-drawer-container {
+  height: 100%;
+}
+
+.box {
+  border-radius: 15px;
+}
+
 #page-container {
-  @include setDimensions(98vh);
-  @include setFlexDisplay(center, flex, column);
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #{map_get($mat-dark-theme-background, 'background')};
+  @include setDimensions(100%);
+  @include setFlexDisplay(space-between, flex, row);
 }
 
 #button-bar {
-  position: absolute;
-  top: 15px;
-  border-radius: 10px;
-  padding: 10px;
-  width: 95%;
+  position: relative;
+  margin-right: 10px;
+  height: 100%;
+  width: 70px;
+  padding: 8px;
   box-sizing: border-box;
-  transition: height 0.5s;
-  vertical-align: middle;
-  display:table-cell;
-  background-image: linear-gradient(-45deg, #13a3cf, #07267c);
-  @include setHorizontalPositions(0, 0);
-  @include addHorizontalAutoMargins(auto, auto);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: flex-start;
+  background-color: #{map_get($mat-dark-theme-background, 'app-bar')};
+}
+
+#permission-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 #module-container {
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 10px;
-  margin-top: 100px;
+  background-color: #{map_get($mat-dark-theme-background, 'app-bar')};
+  overflow: hidden;
   text-align: center;
-  @include setDimensions(85vh, 95%);
-  @include setHorizontalPositions(0, 0);
-  @include addHorizontalAutoMargins(auto, auto);
+  @include setDimensions(100%, 100%);
 }
 
 img {
@@ -58,60 +74,80 @@ strong {
   padding: 5px;
 }
 
-.button {
-  text-decoration: none;
-  display: inline-flex;
+.button-wrapper {
+  position: relative;
+  height: 50px;
+  display: flex;
   align-items: center;
-  overflow:hidden;
-  max-width: 40px;
-  transition: max-width 0.5s;
-  @include setDimensions(40px);
 }
 
-.permissions:hover{
-  max-width: 200px;
+
+.button {
+  position: absolute;
+  max-width: 50px;
+  outline: none;
+  border-radius: 15px;
+  border: none;
+  display: flex;
+  color: white;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  overflow: hidden;
+  transition: all .5s ease-in-out;
+  background-color: #{map_get($mat-dark-theme-background, 'app-bar')};
+}
+
+.button:hover{
+  max-width: 230px;
+}
+
+#menu-button {
+  position: absolute;
+  background-color: #{map_get($mat-dark-theme-background, 'raised-button')};
+  left: 30px;
+  top: 30px;
+  border-radius: 15px;
+  padding: 10px;
+  min-width: 56px !important;
+  box-sizing: border-box;
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .text {
-  color: white;
+  color: #{$light-primary-text};
   white-space: nowrap;
 }
 
 #logout {
-  background-color: #743ad5;
+  color: var(--warn-color);
   padding: 5px;
-  $map: (width: 2px, style: solid, color: #5a5a6d, radius: 10px);
-  @include setBorderProperties($map);
-}
-
-#more {
-  display: none;
-}
-
-#button-bar a:not(:last-child) {
-  margin-right: 20px;
+  img {
+    filter: brightness(0) saturate(100%) invert(58%) sepia(54%)
+    saturate(2178%) hue-rotate(326deg) brightness(100%) contrast(90%);
+  }
 }
 
 @media only screen and (max-width: 600px) {
-  #more{
-    display: inline-flex;
-  }
-  #button-bar a:not(:first-child) {
-    display: none;
-  }
 
   #button-bar {
-    z-index: 3;
-    width: 90%;
-    @include setFlexDisplay(space-between, flex, column);
+    width: 246px;
   }
 
-  #module-container {
-    width: 85%;
+  #permission-container {
+    display: flex;
+    flex-direction: column;
+    .button {
+      margin-bottom: 10px;
+    }
   }
 
-  .permissions {
-    max-width: 200px;
+  .button {
+    position: relative;
+    max-width: 230px;
   }
 
 }

@@ -4,12 +4,12 @@ export const menuBarAnimations = {
   animation: [
     trigger('showHide', [
       state('show', style({
-        height: '95vh'
+        minHeight: '97vh'
       })),
       state('hide', style({
-        height: '75px'
+        minHeight: '75px'
       })),
-      transition('show => hide', [
+      transition('show <=> hide', [
         animate('0.7s ease-in')
       ])
     ]),

@@ -12,8 +12,11 @@ import {CustomSearchBoxInputComponent} from "./customCntrols/custom-search-box-i
 import { LogoutPanelComponent } from './logout-panel/logout-panel.component';
 import { FlightReservationPanelComponent } from './flight-reservation-panel/flight-reservation-panel.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {PlatformModule} from '@angular/cdk/platform';
 import {OverlayModule} from "@angular/cdk/overlay";
 import {A11yModule} from "@angular/cdk/a11y";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -36,7 +39,10 @@ import {A11yModule} from "@angular/cdk/a11y";
     ReactiveFormsModule,
     FormsModule,
     OverlayModule,
-    A11yModule
+    A11yModule,
+    RouterModule,
+    MatSidenavModule,
+    PlatformModule,
   ],
   exports: []
 })
