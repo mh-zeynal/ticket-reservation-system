@@ -10,7 +10,7 @@
 #context {
   height: 100%;
   display: flex;
-  backdrop-filter: blur(2px);
+  animation: backBlur 1s .5s ease-in-out forwards;
 }
 
 #account {
@@ -44,6 +44,15 @@
 #form-container {
   position: relative;
   animation: formFade 1s .5s ease-in-out alternate;
+}
+
+@keyframes backBlur {
+  from {
+    backdrop-filter: blur(0);
+  }
+  to {
+    backdrop-filter: blur(2px);
+  }
 }
 
 @keyframes formFade {

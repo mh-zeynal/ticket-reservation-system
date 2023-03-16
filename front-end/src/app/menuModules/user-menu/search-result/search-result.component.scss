@@ -1,7 +1,8 @@
+@import "src/styles";
+
 #container {
   height: 100%;
   overflow-y: scroll;
-  background-color: white;
   padding: 10px;
   box-sizing: border-box;
   * {
@@ -12,6 +13,8 @@
 }
 
 .flights {
+  background-color: #{map_get($mat-dark-theme-background, 'disabled-button')};
+  color: #{map_get($mat-dark-theme-foreground, 'base')};
   display: flex;
   justify-content: center;
   padding: 5px;
@@ -23,13 +26,14 @@
   margin-bottom: 10px;
   transition: all .2s ease-in;
   &:hover {
-    background-color: #d6d6d6;
-    box-shadow: 0px 8px 12px #8b8b8d;
+    background-color: #{map_get($mat-dark-theme-background, 'hover')};
+    box-shadow: 0px 8px 12px #{map_get($mat-primary, 'lighter')};
     transform: scale(1.01);
   }
 }
 
 #airplane-type {
+  color: #{map_get($mat-primary, 'main')};
   width: fit-content;
   border-radius: 5px;
   background-color: #dddddd;

@@ -1,18 +1,6 @@
 @import "src/assets/sassStuff/mixins";
 @import "src/styles";
 
-@mixin addHorizontalAutoMargins($left, $right){
-  margin: {
-    left: $left;
-    right: $right;
-  };
-}
-
-@mixin setHorizontalPositions($left, $right){
-  left:$left;
-  right:$right;
-}
-
 @mixin setDimensions($height: auto, $width: auto){
   width: $width;
   height: $height;

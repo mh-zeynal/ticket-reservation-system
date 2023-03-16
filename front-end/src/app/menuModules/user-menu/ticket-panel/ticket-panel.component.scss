@@ -1,11 +1,24 @@
-#form-container {
+@import "src/styles";
+
+#route-container {
   height: 100%;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #{map_get($mat-dark-theme-background, 'app-bar')};
+}
+
+#form-container {
+  height: fit-content;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#results-container {
+  height: 100%;
 }
 
 #control-container {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
   height: 100%;
   vertical-align: center;
@@ -17,47 +30,27 @@ form {
   flex-direction: column;
 }
 
-#place-container {
+#control-inner-container {
+  width: 70%;
   display: flex;
   justify-content: space-around;
-  app-custom-search-box-input {
-
-  }
-}
-
-#image-container {
-  width: 35px;
-  height: 35px;
-  padding: 8px;
-  border-radius: 50%;
-  outline: 3px solid #6b6969;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 10px;
   align-items: center;
-  margin: {
-    left: 10px;
-    right: 10px;
-  };
-  img {
-    width: 35px;
-    height: 35px;
-  }
 }
 
 #search-button-container {
-  padding: 20px;
+  padding: 0 20px;
   box-sizing: border-box;
   button {
-    width: 140px;
-    height: 50px;
-    z-index: 0;
+    width: 100%;
   }
 }
 
 #date-container {
+  //width: 30%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .error-log {
@@ -67,41 +60,5 @@ form {
   font-size: 20px;
 }
 
-app-custom-date-input {
-  width: 50%;
-}
 
-app-custom-search-box-input {
-  width: 30%;
-}
-
-@media only screen and (max-width: 512px) {
-  app-custom-date-input {
-    width: 70%;
-  }
-
-  app-custom-search-box-input {
-    width: 40%;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  #place-container {
-    flex-direction: column;
-    align-items: center;
-    height: 30%;
-  }
-
-  #date-container {
-    height: 40%;
-  }
-
-  app-custom-date-input {
-    width: 70%;
-  }
-
-  app-custom-search-box-input {
-    width: 70%;
-  }
-}
 

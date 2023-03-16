@@ -14,7 +14,7 @@ export class TicketPanelComponent implements OnInit {
   ticketGroup = new FormGroup({
     origin: new FormControl('', Validators.required),
     destination: new FormControl('', Validators.required),
-    flightDate: new FormControl('', Validators.required)
+    flightDate: new FormControl(null, Validators.required)
   })
 
   constructor(private httpServ:HttpService, private router: Router) { }
@@ -23,13 +23,13 @@ export class TicketPanelComponent implements OnInit {
   }
 
   onSubmit(){
-    this.submitted = true;
-    if (!this.ticketGroup.valid)
+    if (this.ticketGroup.invalid)
       return;
+    this.submitted = true;
     let origin = this.ticketGroup.controls['origin'].value;
     let destination = this.ticketGroup.controls['destination'].value;
     let date = this.ticketGroup.controls['flightDate'].value;
-    this.router.navigate(['userMenu/flights'], {queryParams: {origin: origin, destination: destination, flightDate: date}})
+    // this.router.navigate(['userMenu/flights'], {queryParams: {origin: origin, destination: destination, flightDate: date}})
   }
 
 }

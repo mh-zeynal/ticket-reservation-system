@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="airplane-data-container">
-      <div [ngStyle]="{'color': (flight.seats.length <= 10) ? 'red' : 'black'}">
+      <div [ngStyle]="{'color': (flight.seats.length <= 10) ? 'var(--warn-color)' : 'var(--text-primary-color)'}">
         {{dialogue}}
       </div>
       <div>

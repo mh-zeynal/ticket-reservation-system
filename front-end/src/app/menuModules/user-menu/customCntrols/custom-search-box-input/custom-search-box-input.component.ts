@@ -1,7 +1,10 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 import {City} from "../../../../interfaces/city";
 import {ConnectionPositionPair} from "@angular/cdk/overlay";
+import {MatSelect} from "@angular/material/select";
+import {ReplaySubject, Subject} from "rxjs";
+import {take, takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-custom-search-box-input',
@@ -13,35 +16,25 @@ import {ConnectionPositionPair} from "@angular/cdk/overlay";
     multi: true
   }]
 })
-export class CustomSearchBoxInputComponent implements OnInit, ControlValueAccessor {
+export class CustomSearchBoxInputComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 
-  public cities !: City[];
+  @Input() type !: string;
 
-  public results !: City[];
+  cities!: City[];
 
-  isUserDropdownOpen = false;
+  cityCtrl = new FormControl(null, Validators.required);
 
+  cityFilterCtrl = new FormControl('');
 
-  @ViewChild('search_box') box!: ElementRef;
+  filteredCities: ReplaySubject<City[]> = new ReplaySubject<City[]>(1);
 
-  @ViewChild('trigger') input !: ElementRef;
+  @ViewChild('singleSelect', { static: true }) singleSelect!: MatSelect;
 
-  @Input() dialogue !: string;
-
-  overlayPositionPairs: ConnectionPositionPair[] = [
-    {
-      offsetX: 0,
-      offsetY: 155,
-      originX: 'center',
-      originY: 'bottom',
-      overlayX: 'center',
-      overlayY: 'bottom',
-    },
-  ];
+  _onDestroy = new Subject<void>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.cities = [
       {
         name: 'tehran'
@@ -125,33 +118,57 @@ export class CustomSearchBoxInputComponent implements OnInit, ControlValueAccess
         name: 'birmingham'
       }
     ]
+    this.filteredCities.next(this.cities.slice());
+    this.cityFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterBanks();
+      });
+    this.cityCtrl.valueChanges.subscribe(value => {
+      this.onChange(value);
+    })
   }
 
-  showList(event: MouseEvent){
-    this.results = this.cities;
-    this.isUserDropdownOpen = true;
+  ngAfterViewInit() {
+    this.setInitialValue();
   }
 
-  hideList(){
-    this.isUserDropdownOpen = false;
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
-  selectCity(val: any, event: MouseEvent){
-    this.hideList();
-    (this.input.nativeElement as HTMLInputElement).value = val;
-    (this.box.nativeElement as HTMLInputElement).value = '';
-    this.onChange(val);
-    event.stopPropagation();
+  setInitialValue() {
+    this.filteredCities
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.singleSelect.compareWith = (a: City, b: City) => a && b && a.name === b.name;
+      });
   }
 
-  searchCity(){
-    let val = (this.box.nativeElement as HTMLInputElement).value;
-    if (val == '') {
-      this.results = this.cities;
+  filterBanks() {
+    if (!this.cities) {
       return;
     }
-    this.results = this.cities.filter(city => city.name.includes(val));
+    let search = this.cityFilterCtrl.value;
+    if (!search) {
+      this.filteredCities.next(this.cities.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    this.filteredCities.next(
+      this.cities.filter(city => city.name.toLowerCase().indexOf(search) > -1)
+    );
   }
+  // selectCity(val: any, event: MouseEvent){
+  //   debugger
+  //   this.hideList();
+  //   (this.input.nativeElement as HTMLInputElement).value = val;
+  //   (this.box.nativeElement as HTMLInputElement).value = '';
+  //   this.onChange(val);
+  //   event.stopPropagation();
+  // }
 
   onChange = (change:any) => {}
 

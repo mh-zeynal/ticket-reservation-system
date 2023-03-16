@@ -1,27 +1,13 @@
-<div id="container">
-  <div id="result-container">
-    <input type="text" readonly
-           placeholder="select your {{dialogue}}" id="result-input"
-           (click)="showList($event)" cdkOverlayOrigin
-           #trigger="cdkOverlayOrigin">
-  </div>
-</div>
-<ng-template cdkConnectedOverlay
-             [cdkConnectedOverlayHasBackdrop]="true"
-             [cdkConnectedOverlayOrigin]="trigger"
-             [cdkConnectedOverlayOpen]="isUserDropdownOpen"
-             (detach)="isUserDropdownOpen = false"
-             (backdropClick)="isUserDropdownOpen = false"
-             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-             [cdkConnectedOverlayPositions]="overlayPositionPairs">
-  <div id="option-container" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
-    <div id="searchbox-container">
-      <input type="text" id="searchbox" (keyup)="searchCity()" #search_box>
-    </div>
-    <div id="scrollable-optionbox">
-      <div *ngFor="let city of results" class="cities" (click)="selectCity(city?.name, $event)">
-        {{city?.name}}
-      </div>
-    </div>
-  </div>
-</ng-template>
+<mat-form-field appearance="outline">
+  <mat-label>{{type}}</mat-label>
+  <mat-select required [formControl]="cityCtrl" #singleSelect>
+    <mat-option>
+      <ngx-mat-select-search [formControl]="cityFilterCtrl"
+                             noEntriesFoundLabel="no {{type}} found" placeholderLabel="find {{type}}">
+      </ngx-mat-select-search>
+    </mat-option>
+    <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+      {{city?.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

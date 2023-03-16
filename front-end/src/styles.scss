@@ -261,14 +261,6 @@ $altTheme: (
   }
 }
 
-
-//input {
-//  border-radius: 5px;
-//  border: 2px #000000 solid;
-//  background-color: #5a5a6d;
-//  padding: 5px;
-//}
-
 .account-form-container {
   border-radius: 12px;
   background-color: transparent;
@@ -276,6 +268,10 @@ $altTheme: (
 
 .mat-form-field {
   width: 100%;
+}
+
+.mat-form-field .mat-form-field-infix {
+  display: flex;
 }
 
 .glass-box {

@@ -1,19 +1,46 @@
-<div id="form-container">
-  <form [formGroup]="ticketGroup" (submit)="onSubmit()">
-    <div id="control-container">
-      <div id="place-container">
-        <app-custom-search-box-input [dialogue]="'source'" formControlName="origin"></app-custom-search-box-input>
-        <app-custom-search-box-input [dialogue]="'destination'" formControlName="destination"></app-custom-search-box-input>
+<!--<div id="form-container">-->
+<!--  <form [formGroup]="ticketGroup" (submit)="onSubmit()">-->
+<!--    <div id="control-container">-->
+<!--      <div id="place-container">-->
+<!--        <app-custom-search-box-input [dialogue]="'source'" formControlName="origin"></app-custom-search-box-input>-->
+<!--        <app-custom-search-box-input [dialogue]="'destination'" formControlName="destination"></app-custom-search-box-input>-->
+<!--      </div>-->
+<!--      <div id="date-container">-->
+<!--        <app-custom-date-input formControlName="flightDate"></app-custom-date-input>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div *ngIf="!ticketGroup.valid && submitted" class="error-log">-->
+<!--      please fill all filters-->
+<!--    </div>-->
+<!--    <div id="search-button-container">-->
+<!--      <button mat-stroked-button color="warn" type="submit">search</button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
+<div id="route-container">
+  <div id="form-container">
+    <form [formGroup]="ticketGroup" (submit)="onSubmit()">
+      <div id="control-container">
+        <div id="control-inner-container">
+          <app-custom-search-box-input [type]="'source'" formControlName="origin"></app-custom-search-box-input>
+          <app-custom-search-box-input [type]="'destination'" formControlName="destination"></app-custom-search-box-input>
+          <mat-form-field appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="flightDate" required>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
       </div>
-      <div id="date-container">
-        <app-custom-date-input formControlName="flightDate"></app-custom-date-input>
+      <div *ngIf="!ticketGroup.valid && submitted" class="error-log">
+        please fill all filters
       </div>
-    </div>
-    <div *ngIf="!ticketGroup.valid && submitted" class="error-log">
-      please fill all filters
-    </div>
-    <div id="search-button-container">
-      <button mat-stroked-button color="warn" type="submit">search</button>
-    </div>
-  </form>
+      <div id="search-button-container">
+        <button mat-raised-button color="primary" type="submit">search</button>
+      </div>
+    </form>
+  </div>
+  <div id="results-container" *ngIf="ticketGroup.valid && submitted">
+    <app-flight-reservation-panel></app-flight-reservation-panel>
+  </div>
 </div>
