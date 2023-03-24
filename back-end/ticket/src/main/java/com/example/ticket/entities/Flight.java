@@ -1,4 +1,4 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "flight", schema = "ticker_reservation_schema")
+@Table(name = "flight", schema = "ticket_reservation_schema")
 public class Flight {
 
     @Id

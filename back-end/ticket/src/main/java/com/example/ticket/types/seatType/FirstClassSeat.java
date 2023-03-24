@@ -4,8 +4,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.*;
 
-@Entity
-@DiscriminatorValue(value = "first_class")
+//@Entity
+//@DiscriminatorValue(value = "first_class")
 public class FirstClassSeat extends Seat implements FirstClassService {
     public FirstClassSeat(int price, int seatNumber) {
         super(price, seatNumber);

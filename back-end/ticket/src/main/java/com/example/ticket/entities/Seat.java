@@ -1,10 +1,9 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import com.example.ticket.enums.SeatClass;
 import com.example.ticket.enums.SeatType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

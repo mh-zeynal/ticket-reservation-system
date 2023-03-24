@@ -8,8 +8,8 @@ import com.example.ticket.types.seatType.Seat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
-@Entity
-@Table(name = "airplanes", schema = "reservation_schema")
+//@Entity
+//@Table(name = "airplanes", schema = "reservation_schema")
 public class Airplane implements Comparable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

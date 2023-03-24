@@ -1,12 +1,14 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
+import com.example.ticket.entityListeners.CustomerListener;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "customer", schema = "ticker_reservation_schema")
+@EntityListeners(CustomerListener.class)
+@Table(name = "customer", schema = "ticket_reservation_schema")
 public class Customer {
     @Id
     @Column(name = "customer_id")

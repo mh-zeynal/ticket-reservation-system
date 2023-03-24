@@ -1,10 +1,9 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity

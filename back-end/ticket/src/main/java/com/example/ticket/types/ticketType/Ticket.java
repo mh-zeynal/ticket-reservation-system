@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
-@Entity
-@Table(name = "tickets", schema = "reservation_schema")
+//@Entity
+//@Table(name = "tickets", schema = "reservation_schema")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

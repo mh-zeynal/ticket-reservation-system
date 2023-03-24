@@ -1,4 +1,4 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +10,14 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @IdClass(UserWithPermissionsCompositeKey.class)
-@Table(name = "user_has__permissions", schema = "ticket_reservation_schema")
+@Table(name = "user_has_permissions", schema = "ticket_reservation_schema")
 public class UserWithPermissions {
+    @Id
     @OneToOne
     @JoinColumn(name = "permission_id")
     private Permission permission;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

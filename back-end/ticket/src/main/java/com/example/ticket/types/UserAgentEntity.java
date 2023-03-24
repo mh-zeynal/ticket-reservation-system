@@ -3,8 +3,8 @@ package com.example.ticket.types;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "user_agents", schema = "reservation_schema")
+//@Entity
+//@Table(name = "user_agents", schema = "reservation_schema")
 public class UserAgentEntity {
     @Id
     @Column(name = "id", nullable = false)

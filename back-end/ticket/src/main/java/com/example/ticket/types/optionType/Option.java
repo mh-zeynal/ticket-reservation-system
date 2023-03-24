@@ -6,8 +6,8 @@ import com.example.ticket.types.permission.Permission;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "options", schema = "reservation_schema")
+//@Entity
+//@Table(name = "options", schema = "reservation_schema")
 public class Option implements Serializable {
     @Id
     @GeneratedValue

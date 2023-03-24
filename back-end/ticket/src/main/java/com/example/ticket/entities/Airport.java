@@ -1,12 +1,10 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.sql.Time;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.TimeZone;

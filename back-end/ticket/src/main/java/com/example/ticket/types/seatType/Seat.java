@@ -13,10 +13,10 @@ import javax.persistence.*;
         @JsonSubTypes.Type(value = NormalSeat.class, name = "NormalSeat"),
         @JsonSubTypes.Type(value = FirstClassSeat.class, name = "FirstClassSeat")
 })
-@Entity
-@Table(name = "seats", schema = "reservation_schema")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "SEAT_TYPE", discriminatorType = DiscriminatorType.STRING)
+//@Entity
+//@Table(name = "seats", schema = "reservation_schema")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "SEAT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

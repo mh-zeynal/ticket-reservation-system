@@ -1,4 +1,4 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "customer", schema = "ticker_reservation_schema")
+@Table(name = "customer", schema = "ticket_reservation_schema")
 public class Employee {
     @Id
     @Column(name = "employee_id")

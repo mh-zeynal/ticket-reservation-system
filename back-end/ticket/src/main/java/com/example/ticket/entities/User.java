@@ -1,12 +1,15 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "user", schema = "ticket_reservation_schema")
 public class User {
     @Id
@@ -31,4 +34,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserWithPermissions> userWithPermissions;
+
+    public User(String username, String password, String email, String role, String name) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.name = name;
+    }
 }

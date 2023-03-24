@@ -2,11 +2,11 @@ package com.example.ticket.controller;
 
 import java.util.*;
 
+import com.example.ticket.entities.Airplane;
 import com.example.ticket.layers.applicationLayer.PaymentManagement;
 import com.example.ticket.repositories.AirplaneRepository;
 import com.example.ticket.types.jacksonPojos.TicketPojo;
 import com.example.ticket.beans.JacksonMapperComponent;
-import com.example.ticket.transportation.Airplane;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
@@ -33,7 +33,7 @@ public class TicketController {
     @PostMapping("/flights")
     public ResponseEntity<String> getFlights() {
         fakeData = new ArrayList<>();
-        Airplane airplane = repository.getFirstById(278);
+        com.example.ticket.entities.Airplane airplane = repository.getFirstById(278);
         fakeData.add(airplane);
         fakeData.add(airplane);
         fakeData.add(airplane);

@@ -1,6 +1,6 @@
 package com.example.ticket.beans;
 
-import com.example.ticket.types.userType.User;
+import com.example.ticket.entities.User;
 import org.jose4j.jwa.AlgorithmConstraints;
 import org.jose4j.jwk.*;
 import org.jose4j.jws.*;

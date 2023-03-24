@@ -1,16 +1,15 @@
 package com.example.ticket.layers.applicationLayer;
 
 import java.util.*;
-import com.example.ticket.beans.UserRepositoryComponent;
+import com.example.ticket.entities.Customer;
+import com.example.ticket.entities.Permission;
+import com.example.ticket.entities.User;
+import com.example.ticket.entities.UserWithPermissions;
 import com.example.ticket.exceptions.*;
-import com.example.ticket.types.userType.*;
-import com.example.ticket.types.permission.*;
+import com.example.ticket.repositories.CustomerRepository;
 import com.example.ticket.repositories.PermissionRepository;
-import com.example.ticket.exceptions.*;
-import com.example.ticket.types.permission.Permission;
-import com.example.ticket.types.userType.NormalUser;
-import com.example.ticket.types.userType.User;
-import com.example.ticket.types.userType.VipUser;
+import com.example.ticket.repositories.UserRepository;
+import com.example.ticket.repositories.UserWithPermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,12 @@ import org.springframework.stereotype.Component;
 public class AccessManagement {
 
     @Autowired
-    private PermissionRepository permissionRepository;
+    private UserWithPermissionRepository userWithPermissionRepository;
     @Autowired
-    private UserRepositoryComponent userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public User login(String inputUser, String inputPass) throws AccountException {
         return isUserInfoValid(inputUser, inputPass);
@@ -29,51 +31,40 @@ public class AccessManagement {
     public boolean signUp(String email, String username, String password, String name) throws AccountException {
         if (userExists(username, email))
             return false;
-        userRepository.saveUser(new NormalUser(username, password, email, name));
+        User newUser = new User(username, password, email, "customer", name);
+        userRepository.save(newUser);
         return true;
     }
 
-    public List<Permission> getPermissions(String role){
-        return createMenu(role);
+    public List<UserWithPermissions> getPermissions(String username){
+        return userWithPermissionRepository.getAllByUserUsername(username);
     }
 
     public void upgradeToVip(String username) throws AlreadyUpdatedException {
-        User user = userRepository.getUserByUsername(username);
-        if (user instanceof VipUser)
+        Customer customer = customerRepository.getCustomerByUserUsername(username);
+        if (customer.isVIP())
             throw new AlreadyUpdatedException();
-        User temp = new VipUser(user.getUsername(), user.getPassword(), user.getEmail(), user.getName());
-        temp.setId(user.getId());
-        userRepository.saveUser(temp);
+        customer.setVIP(true);
+        customerRepository.save(customer);
     }
 
     public User getUser(String username){
-        return userRepository.getUserByUsername(username);
+        return userRepository.getFirstByUsername(username);
     }
 
     private boolean userExists(String username, String email) throws AccountException{
-        if (userRepository.isUserInsideDatabase(username, email))
+        if (userRepository.countByUsernameAndEmail(username, email) != 0)
             throw new AlreadyRegisteredException();
         return false;
     }
 
     private User isUserInfoValid(String username, String password) throws AccountException{
-        User user = userRepository.getUserByUsername(username);
+        User user = userRepository.getFirstByUsername(username);
         if (user == null)
             throw new NotRegisteredException();
         if (user.getPassword().equals(password))
             return user;
         throw new WrongPassException();
-    }
-
-    private List<Permission> createMenu(String role){
-        List<Permission> options;
-        if (role.equals("normal") || role.equals("vip")) {
-            options = new ArrayList<>(permissionRepository.findAllByPermissionTypeOrPermissionType(role, "both"));
-        }
-        else
-            options = new ArrayList<>(permissionRepository.findPermissionEntityByPermissionType(role));
-        options.removeIf(option -> !option.isAllowed());
-        return options;
     }
 
 }

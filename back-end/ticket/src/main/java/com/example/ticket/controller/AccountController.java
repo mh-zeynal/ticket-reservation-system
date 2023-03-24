@@ -2,18 +2,14 @@ package com.example.ticket.controller;
 
 import java.time.Duration;
 
-import com.example.ticket.beans.*;
-import com.example.ticket.types.userType.*;
 import javax.servlet.http.*;
-import com.example.ticket.types.jacksonPojos.*;
 import com.example.ticket.beans.JacksonMapperComponent;
 import com.example.ticket.beans.JwtComponent;
+import com.example.ticket.entities.User;
 import com.example.ticket.exceptions.AccountException;
 import com.example.ticket.types.jacksonPojos.AuthPojo;
 import com.example.ticket.types.jacksonPojos.LoginPojo;
 import com.example.ticket.types.jacksonPojos.UserPojo;
-import com.example.ticket.types.userType.NormalUser;
-import com.example.ticket.types.userType.User;
 import org.springframework.http.*;
 import org.jose4j.lang.JoseException;
 import org.springframework.web.bind.annotation.*;
@@ -80,7 +76,8 @@ public class AccountController {
     }
 
     private User extractUser(UserPojo user){
-        return new NormalUser(user.getUsername(), user.getPassword(), user.getEmail(), user.getName());
+        return new User(user.getUsername(), user.getPassword(),
+                user.getEmail(), "customer", user.getName());
     }
 
     private ResponseCookie generateCookie(String cookieName, String token, long age){

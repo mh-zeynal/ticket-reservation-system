@@ -1,4 +1,4 @@
-package com.example.ticket.entites;
+package com.example.ticket.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @IdClass(SeatWithServicesCompositeKey.class)
-@Table(name = "seat_has+services", schema = "ticket_reservation_schema")
+@Table(name = "seat_has_services", schema = "ticket_reservation_schema")
 public class SeatWithServices {
     @Id
     @ManyToOne

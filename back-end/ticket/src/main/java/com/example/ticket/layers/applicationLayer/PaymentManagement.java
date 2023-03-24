@@ -1,15 +1,17 @@
 package com.example.ticket.layers.applicationLayer;
 
+import com.example.ticket.entities.FlightSchedule;
+import com.example.ticket.repositories.FlightScheduleRepository;
 import com.example.ticket.transportation.*;
-import com.example.ticket.types.seatType.*;
 import com.example.ticket.types.ticketType.Ticket;
-import com.example.ticket.transportation.*;
 
 import java.util.*;
 
 public class PaymentManagement {
     private Map<String, Airline> airlines;
     private List<Ticket> reservedTickets;
+
+    private FlightScheduleRepository scheduleRepository;
 
     public PaymentManagement(String appPath){
         reservedTickets = new LinkedList<>();
@@ -46,12 +48,8 @@ public class PaymentManagement {
         return offers;
     }
 
-    public Map<String, List<Airplane>> getFlights(String origin, String destination){
-        Map<String, List<Airplane>> flights = new HashMap<>();
-        for (String airline : airlines.keySet()) {
-            List<Airplane> list = airlines.get(airline).getIntendedFlights(origin, destination);
-            flights.put(airline, list);
-        }
-        return flights;
+    public List<FlightSchedule> getFlights(String origin, String destination){
+        List<FlightSchedule> flightSchedules = scheduleRepository.getAllByFlightRouteArrivalAirportCityAndFlightRouteDepartureAirportCity(origin, destination);
+        return flightSchedules;
     }
 }
