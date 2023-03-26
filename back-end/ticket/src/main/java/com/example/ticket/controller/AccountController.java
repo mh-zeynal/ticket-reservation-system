@@ -3,10 +3,10 @@ package com.example.ticket.controller;
 import java.time.Duration;
 
 import javax.servlet.http.*;
-import com.example.ticket.beans.JacksonMapperComponent;
-import com.example.ticket.beans.JwtComponent;
-import com.example.ticket.entities.User;
-import com.example.ticket.exceptions.AccountException;
+import com.example.ticket.service.JacksonMapperComponent;
+import com.example.ticket.service.JwtComponent;
+import com.example.ticket.model.entity.User;
+import com.example.ticket.exception.AccountException;
 import com.example.ticket.types.jacksonPojos.AuthPojo;
 import com.example.ticket.types.jacksonPojos.LoginPojo;
 import com.example.ticket.types.jacksonPojos.UserPojo;

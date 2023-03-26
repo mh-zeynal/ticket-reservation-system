@@ -1,10 +1,10 @@
 package com.example.ticket.controller;
 
-import com.example.ticket.beans.JacksonMapperComponent;
-import com.example.ticket.beans.JwtComponent;
+import com.example.ticket.service.JacksonMapperComponent;
+import com.example.ticket.service.JwtComponent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.example.ticket.layers.applicationLayer.AccessManagement;
-import com.example.ticket.entities.User;
+import com.example.ticket.model.entity.User;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;

@@ -1,53 +1,40 @@
 package com.example.ticket.controller;
 
-import java.util.*;
-
-import com.example.ticket.entities.Airplane;
 import com.example.ticket.layers.applicationLayer.PaymentManagement;
-import com.example.ticket.repositories.AirplaneRepository;
+import com.example.ticket.model.entity.FlightSchedule;
+import com.example.ticket.model.json.RouteDto;
+import com.example.ticket.service.JwtComponent;
 import com.example.ticket.types.jacksonPojos.TicketPojo;
-import com.example.ticket.beans.JacksonMapperComponent;
+import com.example.ticket.service.JacksonMapperComponent;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.util.List;
 
 @RequestMapping("api/ticket")
 @RestController
 public class TicketController {
 
     @Autowired
+    @Qualifier("jwtComp")
+    private JwtComponent jwt;
+
+    @Autowired
     private JacksonMapperComponent jack;
 
     @Autowired
     private PaymentManagement paymentManagement;
-    @Autowired
-    private AirplaneRepository repository;
-
-    private ArrayList<Airplane> fakeData;
-
-    public TicketController() {
-
-    }
 
     @PostMapping("/flights")
-    public ResponseEntity<String> getFlights() {
-        fakeData = new ArrayList<>();
-        com.example.ticket.entities.Airplane airplane = repository.getFirstById(278);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
-        fakeData.add(airplane);
+    public ResponseEntity<String> getFlights(@RequestBody RouteDto route) {
+
         String flightsJson = null;
         try {
-            flightsJson = jack.convertToJson(fakeData);
+            List<FlightSchedule> flightSchedules =
+                    paymentManagement.getFlights(route.getOrigin(), route.getDestination());
+            flightsJson = jack.convertToJson(flightSchedules);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -55,8 +42,9 @@ public class TicketController {
     }
 
     @PostMapping("/reserve")
-    public ResponseEntity<?> reserveFlight(@RequestBody TicketPojo body){
-        System.out.println(body.getSeat().getSeatNumber());
+    public ResponseEntity<?> reserveFlight(@RequestBody TicketPojo body, @CookieValue(name = "mytok") String token){
+        String username = jwt.getUsername(token);
+//TODO: change ticket dto to get flightSchedule and flightSeat data
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

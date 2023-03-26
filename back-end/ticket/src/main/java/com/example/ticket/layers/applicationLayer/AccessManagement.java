@@ -1,15 +1,13 @@
 package com.example.ticket.layers.applicationLayer;
 
 import java.util.*;
-import com.example.ticket.entities.Customer;
-import com.example.ticket.entities.Permission;
-import com.example.ticket.entities.User;
-import com.example.ticket.entities.UserWithPermissions;
-import com.example.ticket.exceptions.*;
-import com.example.ticket.repositories.CustomerRepository;
-import com.example.ticket.repositories.PermissionRepository;
-import com.example.ticket.repositories.UserRepository;
-import com.example.ticket.repositories.UserWithPermissionRepository;
+import com.example.ticket.model.entity.Customer;
+import com.example.ticket.model.entity.User;
+import com.example.ticket.model.entity.UserWithPermissions;
+import com.example.ticket.exception.*;
+import com.example.ticket.repository.CustomerRepository;
+import com.example.ticket.repository.UserRepository;
+import com.example.ticket.repository.UserWithPermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
